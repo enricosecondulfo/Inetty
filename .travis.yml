@@ -15,6 +15,7 @@ before_install:
 - brew install carthage
 - carthage bootstrap --verbose
 
+
 script:
 - xcodebuild clean build test -project Inetty.xcodeproj -scheme UnitTests
 
