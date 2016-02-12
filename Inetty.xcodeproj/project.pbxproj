@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		6D537CB81C6E699200B59201 /* Tag.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6D537CB71C6E699200B59201 /* Tag.swift */; };
 		6D9D475D1C69219C000A8BAF /* InettyRest.h in Headers */ = {isa = PBXBuildFile; fileRef = 6D9D475C1C69219C000A8BAF /* InettyRest.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		6D9D47631C6921C3000A8BAF /* Gloss.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6D9D47621C6921C3000A8BAF /* Gloss.framework */; };
 		6D9D47791C692384000A8BAF /* RestClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6D9D47781C692384000A8BAF /* RestClient.swift */; };
@@ -41,6 +42,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		6D537CB71C6E699200B59201 /* Tag.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Tag.swift; sourceTree = "<group>"; };
 		6D9D474D1C69205F000A8BAF /* InettyCore.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = InettyCore.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		6D9D474F1C69205F000A8BAF /* InettyCore.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = InettyCore.h; sourceTree = "<group>"; };
 		6D9D47511C69205F000A8BAF /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -220,6 +222,7 @@
 			children = (
 				6DF9BF0D1C6A9249000F68E3 /* Store.swift */,
 				6DF9BF0F1C6A942B000F68E3 /* Category.swift */,
+				6D537CB71C6E699200B59201 /* Tag.swift */,
 			);
 			path = Domains;
 			sourceTree = "<group>";
@@ -442,6 +445,7 @@
 				6DF9BF0E1C6A9249000F68E3 /* Store.swift in Sources */,
 				6DF9BF0C1C6A91BB000F68E3 /* RestClientTests.swift in Sources */,
 				6DF9BF141C6A95C6000F68E3 /* SubTest.swift in Sources */,
+				6D537CB81C6E699200B59201 /* Tag.swift in Sources */,
 				6DF9BF121C6A956E000F68E3 /* Test.swift in Sources */,
 				6D9D47A91C693879000A8BAF /* JsonSerializerTests.swift in Sources */,
 				6DF9BF101C6A942B000F68E3 /* Category.swift in Sources */,

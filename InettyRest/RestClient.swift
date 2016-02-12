@@ -29,14 +29,13 @@ public class RestClient {
      - successCallback: The callback called when the status code of the response i
      - errorCallback: The callback called when the status code is different from the codes of success
      */
-    public func doGet<D where D: RawDomain>(url:String, successCallback: ((entities: [D]?, response:NSHTTPURLResponse?) -> ())!, errorCallback: ((response:NSURLResponse?) -> ())!) {
+    public func doGet<D where D: RawDomain>(url:String, successCallback: ((entities: [D]?, response:NSHTTPURLResponse?) -> ())?, errorCallback: ((response:NSURLResponse?) -> ())?) {
         
         let successStatusCodes:[HttpResponseStatusCode] = [HttpResponseStatusCode.OK, HttpResponseStatusCode.NOT_MODIFIED]
         
         doGet(url, successStatusCodes: successStatusCodes, successCallback: successCallback, errorCallback: errorCallback)
     }
-    
-    
+
     /**
      Execute get request
      
@@ -53,35 +52,81 @@ public class RestClient {
         execute(request, successStatusCodes: successStatusCodes, successCallback: successCallback, errorCallaback: errorCallback)
     }
     
-    private func execute<D where D: RawDomain>(request: NSMutableURLRequest, successStatusCodes:[HttpResponseStatusCode], successCallback: ((entities: [D]?, response:NSHTTPURLResponse?) -> ())!, errorCallaback: ((response:NSURLResponse?) -> ())!) {
+    /**
+     Execute post request
+     
+     - Parameters:
+     - url: The endpoint url
+     - entityToAdd: The entity that you want to add
+     - successCallback: The callback called when the status code of the response i
+     - errorCallback: The callback called when the status code is different from the codes of success
+     */
+    public func doPost<D where D: RawDomain>(url:String, entityToAdd:D?, successCallback: ((response:NSHTTPURLResponse?) -> ())?, errorCallback: ((response:NSURLResponse?) -> ())?) {
+        
+        let successStatusCodes:[HttpResponseStatusCode] = [HttpResponseStatusCode.OK, HttpResponseStatusCode.CREATED]
+        
+        doPost(url, successStatusCodes: successStatusCodes, entityToAdd: entityToAdd, successCallback: successCallback, errorCallback: errorCallback)
+    }
+    
+    /**
+     Execute post request
+     
+     - Parameters:
+     - url: The endpoint url
+     - successStatusCodes: The codes wich determine that the call was successful
+     - entityToAdd: The entity that you want to add
+     - successCallback: The callback called when the status code of the response i
+     - errorCallback: The callback called when the status code is different from the codes of success
+     */
+    public func doPost<D where D: RawDomain>(url:String, successStatusCodes:[HttpResponseStatusCode], entityToAdd:D?, successCallback: ((response:NSHTTPURLResponse?) -> ())?, errorCallback: ((response:NSURLResponse?) -> ())?) {
+        
+        doPost(url, successStatusCodes: successStatusCodes, entityToAdd: entityToAdd, successCallback: { (entities: [D]?, response:NSHTTPURLResponse?) -> () in
+            successCallback!(response: response)
+            
+            }) { (response:NSURLResponse?) -> () in
+                errorCallback!(response: response)
+        }
+    }
+    
+    public func doPost<D where D: RawDomain>(url:String, entityToAdd:D?, successCallback: ((entities: [D]?, response:NSHTTPURLResponse?) -> ())?, errorCallback: ((response:NSURLResponse?) -> ())?) {
+        
+        let successStatusCodes:[HttpResponseStatusCode] = [HttpResponseStatusCode.OK, HttpResponseStatusCode.CREATED]
+        
+        doPost(url, successStatusCodes: successStatusCodes, entityToAdd: entityToAdd, successCallback: successCallback, errorCallback: errorCallback)
+    }
+    
+    public func doPost<D where D: RawDomain>(url:String, successStatusCodes:[HttpResponseStatusCode], entityToAdd: D?, successCallback: ((entities: [D]?, response:NSHTTPURLResponse?) -> ())?, errorCallback: ((response:NSURLResponse?) -> ())?) {
+        
+        let request:NSMutableURLRequest = createRequest(HttpMethod.POST, url: url, httpContentType: HttpContentType.json, httpAccept: HttpAccept.json, additionalValuesHeader: nil, entityToAdd: entityToAdd)
+        
+        execute(request, successStatusCodes: successStatusCodes, successCallback: successCallback, errorCallaback: errorCallback)
+    }
+
+    private func execute<D where D: RawDomain>(request: NSMutableURLRequest, successStatusCodes:[HttpResponseStatusCode], successCallback: ((entities: [D]?, response:NSHTTPURLResponse?) -> ())?, errorCallaback: ((response:NSURLResponse?) -> ())?) {
                 
         let urlSession:NSURLSession = NSURLSession.sharedSession()
 
         let task:NSURLSessionTask = urlSession.dataTaskWithRequest(request) { (data:NSData?, response:NSURLResponse?, error:NSError?) -> Void in
             
-            if let httpResponse:NSHTTPURLResponse = response as? NSHTTPURLResponse {
+            guard let httpResponse: NSHTTPURLResponse = response as? NSHTTPURLResponse where successStatusCodes.contains(HttpResponseStatusCode(rawValue: httpResponse.statusCode)!) else {
                 
-                print(httpResponse.statusCode)
+                errorCallaback?(response: response)
+                return
+            }
+            
+            guard let data: NSData = data where data.length > 0 else {
+                successCallback?(entities: nil, response: httpResponse)
+                return
+            }
+            
+            do {
+                let entities: [D]? = try self.jsonSerializer.deserialize(data)
                 
-                if successStatusCodes.contains(HttpResponseStatusCode(rawValue: httpResponse.statusCode)!) {
-                    
-                    if  let data: NSData = data {
-                        
-                        do {
-                    
-                            let entities: [D]! = try self.jsonSerializer.deserialize(data)!
-                            
-                            successCallback(entities: entities, response: httpResponse)
-                            
-                        } catch {
-                            errorCallaback(response: response)
-                            return
-                        }
-                    }
-                    
-                } else {
-                    errorCallaback(response: response)
-                }
+                successCallback?(entities: entities, response: httpResponse)
+                
+            } catch {
+                errorCallaback?(response: response)
+                return
             }
         }
         

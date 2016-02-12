@@ -40,4 +40,26 @@ class RestClientTests: XCTestCase {
         })
     }
     
+    func testDoPost() {
+        let expectation:XCTestExpectation! = self.expectationWithDescription("asynchronous request")
+        
+        var tag = Tag()
+        tag.name = "test tg5"
+        
+        restClient.doPost("/tags", entityToAdd: tag, successCallback: { (response: NSHTTPURLResponse?) -> () in
+            
+            print("tags added")
+            expectation.fulfill()
+            
+            }) { (response: NSURLResponse?) -> () in
+                print("error")
+                print(response)
+                expectation.fulfill()
+        }
+        
+        self.waitForExpectationsWithTimeout(30, handler: { error in
+            XCTAssertNil(error, "Error")
+        })
+    }
+    
 }

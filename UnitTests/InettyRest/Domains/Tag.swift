@@ -1,8 +1,8 @@
 //
-//  Category.swift
+//  Tag.swift
 //  Inetty
 //
-//  Created by Enrico Secondulfo on 09/02/16.
+//  Created by Enrico Secondulfo on 12/02/16.
 //  Copyright © 2016 major bit innovation. All rights reserved.
 //
 
@@ -10,8 +10,8 @@ import UIKit
 import InettyCore
 import Gloss
 
-struct Category: RawDomain {
-
+struct Tag: RawDomain {
+    
     var id: String?
     var name: String?
     
@@ -19,8 +19,8 @@ struct Category: RawDomain {
     }
     
     init?(json: JSON) {
-       self.id = "id" <~~ json
-       self.name = "name" <~~ json
+        self.id = "id" <~~ json
+        self.name = "name" <~~ json
     }
     
     func toJSON() -> JSON? {
@@ -29,4 +29,5 @@ struct Category: RawDomain {
             "name" ~~> self.name
         ])
     }
+
 }

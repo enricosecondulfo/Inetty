@@ -17,6 +17,9 @@ struct Store: RawDomain {
     var imageUrl: String?
     var category: Category?
     
+    init() {
+    }
+    
     init?(json: JSON) {
         self.id = "id" <~~ json
         self.name = "name" <~~ json
