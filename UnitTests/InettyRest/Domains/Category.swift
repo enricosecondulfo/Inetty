@@ -7,7 +7,7 @@
 //
 
 import UIKit
-import InettyCore
+import InettyRest
 import Gloss
 
 struct Category: RawDomain {

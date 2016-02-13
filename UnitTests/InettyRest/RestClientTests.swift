@@ -27,7 +27,7 @@ class RestClientTests: XCTestCase {
         
         restClient.doGet("/stores", successCallback: { (stores: [Store]?, response: NSHTTPURLResponse?) -> () in
             
-            print(stores)
+            XCTAssertNotNil(stores)
             expectation.fulfill()
             
             }) { (response: NSURLResponse?) -> () in
@@ -44,16 +44,16 @@ class RestClientTests: XCTestCase {
         let expectation:XCTestExpectation! = self.expectationWithDescription("asynchronous request")
         
         var tag = Tag()
-        tag.name = "test tg5"
+        tag.name = "test tg"
         
         restClient.doPost("/tags", entityToAdd: tag, successCallback: { (response: NSHTTPURLResponse?) -> () in
             
-            print("tags added")
+            XCTAssertEqual(response?.statusCode, 200)
             expectation.fulfill()
             
             }) { (response: NSURLResponse?) -> () in
-                print("error")
-                print(response)
+                
+                XCTAssertNotNil(response)
                 expectation.fulfill()
         }
         
@@ -61,5 +61,46 @@ class RestClientTests: XCTestCase {
             XCTAssertNil(error, "Error")
         })
     }
+    
+    func testDoUpdate() {
+        let expectation:XCTestExpectation! = self.expectationWithDescription("asynchronous request")
+        
+        var tag = Tag()
+        tag.name = "test tg"
+        
+        restClient.doUpdate("/tags/56bf552f45ce1b816bbaf090", entityToAdd: tag, successCallback: { (response: NSHTTPURLResponse?) -> () in
+            
+            XCTAssertEqual(response?.statusCode, 200)
+            expectation.fulfill()
+            
+            }) { (response: NSURLResponse?) -> () in
+                
+                XCTAssertNotNil(response)
+                expectation.fulfill()
+        }
+        
+        self.waitForExpectationsWithTimeout(30, handler: { error in
+            XCTAssertNil(error, "Error")
+        })
+    }
+    
+    func testDoDelete() {
+        let expectation:XCTestExpectation! = self.expectationWithDescription("asynchronous request")
+        
+        restClient.doDelete("/tags/56bf552f45ce1b816bbaf090", type: Tag.self, successCallback: { (response: NSHTTPURLResponse?) -> () in
+            
+            XCTAssertEqual(response?.statusCode, 200)
+            expectation.fulfill()
+            
+            }) { (response: NSURLResponse?) -> () in
+                XCTAssertNotNil(response)
+                expectation.fulfill()
+        }
+        
+        self.waitForExpectationsWithTimeout(30, handler: { error in
+            XCTAssertNil(error, "Error")
+        })
+    }
+    
     
 }

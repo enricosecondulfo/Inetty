@@ -13,11 +13,11 @@ public class JsonSerializer: RawSerializer {
     public init() {
     }
     
-    public func serialize<D where D: RawDomain>(entity: D) throws -> NSData? {
+    public func serialize<D where D: Serializable>(entity: D) throws -> NSData? {
         return try NSJSONSerialization.dataWithJSONObject(entity.toJSON()!, options: [])
     }
     
-    public func serialize<D where D: RawDomain>(entities: [D]) throws -> NSData? {
+    public func serialize<D where D: Serializable>(entities: [D]) throws -> NSData? {
         var entitiesDictionary: [[String: AnyObject]] = []
          
         for entity: D in entities {
@@ -27,21 +27,21 @@ public class JsonSerializer: RawSerializer {
         return try NSJSONSerialization.dataWithJSONObject(entitiesDictionary, options: [])
     }
     
-    public func serialize<D where D: RawDomain>(entity: D) throws -> String? {
+    public func serialize<D where D: Serializable>(entity: D) throws -> String? {
         return try String(data: serialize(entity)!, encoding: NSUTF8StringEncoding)
     }
     
-    public func serialize<D where D: RawDomain>(entities: [D]) throws -> String? {
+    public func serialize<D where D: Serializable>(entities: [D]) throws -> String? {
         return try String(data: serialize(entities)!, encoding:  NSUTF8StringEncoding)
     }
     
-    public func deserialize<D where D: RawDomain>(data: NSData) throws -> D? {
+    public func deserialize<D where D: Serializable>(data: NSData) throws -> D? {
         var entities: [D]? = try deserialize(data)
         
         return entities != nil && entities!.count > 0 ? entities![0] : nil
     }
     
-    public func deserialize<D where D: RawDomain>(data: NSData) throws -> [D]? {
+    public func deserialize<D where D: Serializable>(data: NSData) throws -> [D]? {
         var entities: [D] = []
         
         let result: AnyObject = try NSJSONSerialization.JSONObjectWithData(data, options: .MutableContainers)
@@ -58,13 +58,13 @@ public class JsonSerializer: RawSerializer {
         return entities
     }
     
-    public func deserialize<D where D : RawDomain>(text: String) throws -> D? {
+    public func deserialize<D where D : Serializable>(text: String) throws -> D? {
         var entities: [D]! = try deserialize(text)
         
         return entities != nil && entities.count > 0 ? entities[0] : nil
     }
 
-    public func deserialize<D where D : RawDomain>(text: String) throws -> [D]? {
+    public func deserialize<D where D : Serializable>(text: String) throws -> [D]? {
         return try deserialize(text.dataUsingEncoding(NSUTF8StringEncoding)!)
     }
 

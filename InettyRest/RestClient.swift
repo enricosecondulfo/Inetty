@@ -49,7 +49,7 @@ public class RestClient {
         
         let request: NSMutableURLRequest = createRequest(HttpMethod.GET, url: url, httpContentType: HttpContentType.json, httpAccept: HttpAccept.json, additionalValuesHeader: nil)
         
-        execute(request, successStatusCodes: successStatusCodes, successCallback: successCallback, errorCallaback: errorCallback)
+        execute(request, successStatusCodes: successStatusCodes, successCallback: successCallback, errorCallback: errorCallback)
     }
     
     /**
@@ -99,10 +99,98 @@ public class RestClient {
         
         let request:NSMutableURLRequest = createRequest(HttpMethod.POST, url: url, httpContentType: HttpContentType.json, httpAccept: HttpAccept.json, additionalValuesHeader: nil, entityToAdd: entityToAdd)
         
-        execute(request, successStatusCodes: successStatusCodes, successCallback: successCallback, errorCallaback: errorCallback)
+        execute(request, successStatusCodes: successStatusCodes, successCallback: successCallback, errorCallback: errorCallback)
+    }
+    
+    /**
+     Execute update request
+     
+     - Parameters:
+     - url: The endpoint url
+     - entityToAdd: The entity that you want to update
+     - successCallback: The callback called when the status code of the response i
+     - errorCallback: The callback called when the status code is different from the codes of success
+     */
+    public func doUpdate<D where D: RawDomain>(url:String, entityToAdd: D?, successCallback: ((response:NSHTTPURLResponse?) -> ())?, errorCallback: ((response:NSURLResponse?) -> ())?) {
+        
+        let successStatusCodes:[HttpResponseStatusCode] = [HttpResponseStatusCode.OK, HttpResponseStatusCode.CREATED]
+        
+        doUpdate(url, successStatusCodes: successStatusCodes, entityToAdd: entityToAdd, successCallback: successCallback, errorCallback: errorCallback)
+    }
+    
+    
+    /**
+     Execute post request
+     
+     - Parameters:
+     - url: The endpoint url
+     - successStatusCodes: The codes wich determine that the call was successful
+     - entityToAdd: The entity that you want to update
+     - successCallback: The callback called when the status code of the response i
+     - errorCallback: The callback called when the status code is different from the codes of success
+     */
+    public func doUpdate<D where D: RawDomain>(url:String, successStatusCodes:[HttpResponseStatusCode], entityToAdd:D?, successCallback: ((response:NSHTTPURLResponse?) -> ())?, errorCallback: ((response:NSURLResponse?) -> ())?) {
+        
+        doUpdate(url, successStatusCodes: successStatusCodes, entityToAdd: entityToAdd, successCallback: { (entities: [D]?, response:NSHTTPURLResponse?) -> () in
+            successCallback?(response: response)
+            
+            }) { (response:NSURLResponse?) -> () in
+                errorCallback?(response: response)
+        }
+    }
+    
+    public func doUpdate<D where D: RawDomain>(url:String, entityToAdd:D?, successCallback: ((entities: [D]?, response:NSHTTPURLResponse?) -> ())!, errorCallback: ((response:NSURLResponse?) -> ())?) {
+        
+        let successStatusCodes:[HttpResponseStatusCode] = [HttpResponseStatusCode.OK, HttpResponseStatusCode.CREATED]
+        
+        doUpdate(url, successStatusCodes: successStatusCodes, entityToAdd: entityToAdd, successCallback: successCallback, errorCallback: errorCallback)
+    }
+    
+    public func doUpdate<D where D: RawDomain>(url:String, successStatusCodes:[HttpResponseStatusCode], entityToAdd: D?, successCallback: ((entities: [D]?, response:NSHTTPURLResponse?) -> ())?, errorCallback: ((response:NSURLResponse?) -> ())?) {
+        
+        let request:NSMutableURLRequest = createRequest(HttpMethod.PUT, url: url, httpContentType: HttpContentType.json, httpAccept: HttpAccept.json, additionalValuesHeader: nil, entityToAdd: entityToAdd)
+        
+        execute(request, successStatusCodes: successStatusCodes, successCallback: successCallback, errorCallback: errorCallback)
+    }
+    
+    /**
+     Execute delete request
+     
+     - Parameters:
+     - url: The endpoint url
+     - successCallback: The callback called when the status code of the response i
+     - errorCallback: The callback called when the status code is different from the codes of success
+     */
+    public func doDelete<D where D: RawDomain>(url:String, type: D.Type, successCallback: ((response:NSHTTPURLResponse?) -> ())?, errorCallback: ((response:NSURLResponse?) -> ())?) {
+        
+        let successStatusCodes:[HttpResponseStatusCode] = [HttpResponseStatusCode.OK, HttpResponseStatusCode.CREATED]
+        
+        doDelete(url, type: type, successStatusCodes: successStatusCodes, successCallback: successCallback, errorCallback: errorCallback)
+    }
+    
+    /**
+     Execute delete request
+     
+     - Parameters:
+     - url: The endpoint url
+     - successStatusCodes: The codes wich determine that the call was successful
+     - successCallback: The callback called when the status code of the response i
+     - errorCallback: The callback called when the status code is different from the codes of success
+     */
+    public func doDelete<D where D: RawDomain>(url:String, type: D.Type, successStatusCodes:[HttpResponseStatusCode], successCallback: ((response:NSHTTPURLResponse?) -> ())?, errorCallback: ((response:NSURLResponse?) -> ())?) {
+        
+        let request:NSMutableURLRequest = createRequest(HttpMethod.DELETE, url: url, httpContentType: HttpContentType.json, httpAccept: HttpAccept.json, additionalValuesHeader: nil)
+        
+        execute(request, successStatusCodes: successStatusCodes, successCallback: { (entities: [D]?, response:NSHTTPURLResponse?) -> () in
+            
+            successCallback?(response: response)
+            
+            }) { (response:NSURLResponse?) -> () in
+                errorCallback?(response: response)
+        }
     }
 
-    private func execute<D where D: RawDomain>(request: NSMutableURLRequest, successStatusCodes:[HttpResponseStatusCode], successCallback: ((entities: [D]?, response:NSHTTPURLResponse?) -> ())?, errorCallaback: ((response:NSURLResponse?) -> ())?) {
+    private func execute<D where D: RawDomain>(request: NSMutableURLRequest, successStatusCodes:[HttpResponseStatusCode], successCallback: ((entities: [D]?, response:NSHTTPURLResponse?) -> ())? = nil, errorCallback: ((response:NSURLResponse?) -> ())? = nil) {
                 
         let urlSession:NSURLSession = NSURLSession.sharedSession()
 
@@ -110,7 +198,7 @@ public class RestClient {
             
             guard let httpResponse: NSHTTPURLResponse = response as? NSHTTPURLResponse where successStatusCodes.contains(HttpResponseStatusCode(rawValue: httpResponse.statusCode)!) else {
                 
-                errorCallaback?(response: response)
+                errorCallback?(response: response)
                 return
             }
             
@@ -125,7 +213,7 @@ public class RestClient {
                 successCallback?(entities: entities, response: httpResponse)
                 
             } catch {
-                errorCallaback?(response: response)
+                errorCallback?(response: response)
                 return
             }
         }

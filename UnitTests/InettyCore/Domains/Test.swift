@@ -10,7 +10,7 @@ import UIKit
 import InettyCore
 import Gloss
 
-struct Test: RawDomain {
+struct Test: Serializable {
 
     var name: String?
     var number: Int?

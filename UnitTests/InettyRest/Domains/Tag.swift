@@ -7,7 +7,7 @@
 //
 
 import UIKit
-import InettyCore
+import InettyRest
 import Gloss
 
 struct Tag: RawDomain {
@@ -29,5 +29,4 @@ struct Tag: RawDomain {
             "name" ~~> self.name
         ])
     }
-
 }
