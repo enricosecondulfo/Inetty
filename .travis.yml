@@ -14,6 +14,7 @@ env:
         - FRAMEWORK_NAME=Inetty
 
 before_install:
+    - brew uninstall xctool && brew install --HEAD xctool
     - brew update
     - brew install carthage
 
