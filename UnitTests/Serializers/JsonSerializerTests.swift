@@ -50,7 +50,6 @@ class JsonSerializerTests: XCTestCase {
         } catch let error as NSError {
             print(error)
         }
-        
     }
     
 }
