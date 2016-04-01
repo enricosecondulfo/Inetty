@@ -7,6 +7,27 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		6D325CA01CAF25260035B572 /* InettyRT.h in Headers */ = {isa = PBXBuildFile; fileRef = 6D325C9F1CAF25260035B572 /* InettyRT.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		6D325CA71CAF25A80035B572 /* SSLSecurity.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6D325CA51CAF25A80035B572 /* SSLSecurity.swift */; };
+		6D325CA81CAF25A80035B572 /* WebSocket.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6D325CA61CAF25A80035B572 /* WebSocket.swift */; };
+		6D325CB21CAF26A80035B572 /* StompClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6D325CAF1CAF26A80035B572 /* StompClient.swift */; };
+		6D325CB31CAF26A80035B572 /* StompClientDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6D325CB01CAF26A80035B572 /* StompClientDelegate.swift */; };
+		6D325CB41CAF26A80035B572 /* StompServerFrameBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6D325CB11CAF26A80035B572 /* StompServerFrameBuilder.swift */; };
+		6D325CB61CAF26B00035B572 /* StompServerFrameBuilderError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6D325CB51CAF26B00035B572 /* StompServerFrameBuilderError.swift */; };
+		6D325CB91CAF26EE0035B572 /* StompFrameClientCommand.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6D325CB71CAF26EE0035B572 /* StompFrameClientCommand.swift */; };
+		6D325CBA1CAF26EE0035B572 /* StompFrameServerCommand.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6D325CB81CAF26EE0035B572 /* StompFrameServerCommand.swift */; };
+		6D325CBC1CAF26FC0035B572 /* StompFrame.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6D325CBB1CAF26FC0035B572 /* StompFrame.swift */; };
+		6D325CC21CAF27040035B572 /* ConnectedFrame.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6D325CBD1CAF27040035B572 /* ConnectedFrame.swift */; };
+		6D325CC31CAF27040035B572 /* ErrorFrame.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6D325CBE1CAF27040035B572 /* ErrorFrame.swift */; };
+		6D325CC41CAF27040035B572 /* MessageFrame.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6D325CBF1CAF27040035B572 /* MessageFrame.swift */; };
+		6D325CC51CAF27040035B572 /* ReceiptFrame.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6D325CC01CAF27040035B572 /* ReceiptFrame.swift */; };
+		6D325CC61CAF27040035B572 /* StompServerFrame.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6D325CC11CAF27040035B572 /* StompServerFrame.swift */; };
+		6D325CCB1CAF270D0035B572 /* ConnectFrame.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6D325CC71CAF270D0035B572 /* ConnectFrame.swift */; };
+		6D325CCC1CAF270D0035B572 /* SendFrame.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6D325CC81CAF270D0035B572 /* SendFrame.swift */; };
+		6D325CCD1CAF270D0035B572 /* StompClientFrame.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6D325CC91CAF270D0035B572 /* StompClientFrame.swift */; };
+		6D325CCE1CAF270D0035B572 /* SubscribeFrame.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6D325CCA1CAF270D0035B572 /* SubscribeFrame.swift */; };
+		6D325CD11CAF28190035B572 /* StringExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6D325CD01CAF28190035B572 /* StringExtension.swift */; };
+		6D325CD41CAF28640035B572 /* StompClientTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6D325CD31CAF28640035B572 /* StompClientTests.swift */; };
 		6D42DA7D1C6F829B00659DB7 /* Serializable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6D42DA7C1C6F829B00659DB7 /* Serializable.swift */; };
 		6D42DA7F1C6F82F600659DB7 /* RawDomain.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6D42DA7E1C6F82F600659DB7 /* RawDomain.swift */; };
 		6D537CB81C6E699200B59201 /* Tag.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6D537CB71C6E699200B59201 /* Tag.swift */; };
@@ -43,6 +64,29 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		6D325C9D1CAF25260035B572 /* InettyRT.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = InettyRT.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		6D325C9F1CAF25260035B572 /* InettyRT.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = InettyRT.h; sourceTree = "<group>"; };
+		6D325CA11CAF25260035B572 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		6D325CA51CAF25A80035B572 /* SSLSecurity.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SSLSecurity.swift; sourceTree = "<group>"; };
+		6D325CA61CAF25A80035B572 /* WebSocket.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WebSocket.swift; sourceTree = "<group>"; };
+		6D325CAF1CAF26A80035B572 /* StompClient.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StompClient.swift; sourceTree = "<group>"; };
+		6D325CB01CAF26A80035B572 /* StompClientDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StompClientDelegate.swift; sourceTree = "<group>"; };
+		6D325CB11CAF26A80035B572 /* StompServerFrameBuilder.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StompServerFrameBuilder.swift; sourceTree = "<group>"; };
+		6D325CB51CAF26B00035B572 /* StompServerFrameBuilderError.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StompServerFrameBuilderError.swift; sourceTree = "<group>"; };
+		6D325CB71CAF26EE0035B572 /* StompFrameClientCommand.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StompFrameClientCommand.swift; sourceTree = "<group>"; };
+		6D325CB81CAF26EE0035B572 /* StompFrameServerCommand.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StompFrameServerCommand.swift; sourceTree = "<group>"; };
+		6D325CBB1CAF26FC0035B572 /* StompFrame.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StompFrame.swift; sourceTree = "<group>"; };
+		6D325CBD1CAF27040035B572 /* ConnectedFrame.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ConnectedFrame.swift; sourceTree = "<group>"; };
+		6D325CBE1CAF27040035B572 /* ErrorFrame.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ErrorFrame.swift; sourceTree = "<group>"; };
+		6D325CBF1CAF27040035B572 /* MessageFrame.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MessageFrame.swift; sourceTree = "<group>"; };
+		6D325CC01CAF27040035B572 /* ReceiptFrame.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ReceiptFrame.swift; sourceTree = "<group>"; };
+		6D325CC11CAF27040035B572 /* StompServerFrame.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StompServerFrame.swift; sourceTree = "<group>"; };
+		6D325CC71CAF270D0035B572 /* ConnectFrame.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ConnectFrame.swift; sourceTree = "<group>"; };
+		6D325CC81CAF270D0035B572 /* SendFrame.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SendFrame.swift; sourceTree = "<group>"; };
+		6D325CC91CAF270D0035B572 /* StompClientFrame.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StompClientFrame.swift; sourceTree = "<group>"; };
+		6D325CCA1CAF270D0035B572 /* SubscribeFrame.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SubscribeFrame.swift; sourceTree = "<group>"; };
+		6D325CD01CAF28190035B572 /* StringExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StringExtension.swift; sourceTree = "<group>"; };
+		6D325CD31CAF28640035B572 /* StompClientTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StompClientTests.swift; sourceTree = "<group>"; };
 		6D42DA7C1C6F829B00659DB7 /* Serializable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Serializable.swift; sourceTree = "<group>"; };
 		6D42DA7E1C6F82F600659DB7 /* RawDomain.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RawDomain.swift; sourceTree = "<group>"; };
 		6D537CB71C6E699200B59201 /* Tag.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Tag.swift; sourceTree = "<group>"; };
@@ -72,6 +116,13 @@
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
+		6D325C991CAF25260035B572 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		6D9D47491C69205F000A8BAF /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
@@ -101,12 +152,104 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		6D325C9E1CAF25260035B572 /* InettyRT */ = {
+			isa = PBXGroup;
+			children = (
+				6D325CA91CAF25D80035B572 /* Stomp */,
+				6D325CA51CAF25A80035B572 /* SSLSecurity.swift */,
+				6D325CA61CAF25A80035B572 /* WebSocket.swift */,
+				6D325C9F1CAF25260035B572 /* InettyRT.h */,
+				6D325CA11CAF25260035B572 /* Info.plist */,
+			);
+			path = InettyRT;
+			sourceTree = "<group>";
+		};
+		6D325CA91CAF25D80035B572 /* Stomp */ = {
+			isa = PBXGroup;
+			children = (
+				6D325CAF1CAF26A80035B572 /* StompClient.swift */,
+				6D325CB01CAF26A80035B572 /* StompClientDelegate.swift */,
+				6D325CB11CAF26A80035B572 /* StompServerFrameBuilder.swift */,
+				6D325CAC1CAF26200035B572 /* Errors */,
+				6D325CAB1CAF26050035B572 /* Commands */,
+				6D325CAA1CAF25FC0035B572 /* Frames */,
+			);
+			path = Stomp;
+			sourceTree = "<group>";
+		};
+		6D325CAA1CAF25FC0035B572 /* Frames */ = {
+			isa = PBXGroup;
+			children = (
+				6D325CBB1CAF26FC0035B572 /* StompFrame.swift */,
+				6D325CAE1CAF26740035B572 /* Server */,
+				6D325CAD1CAF266D0035B572 /* Client */,
+			);
+			path = Frames;
+			sourceTree = "<group>";
+		};
+		6D325CAB1CAF26050035B572 /* Commands */ = {
+			isa = PBXGroup;
+			children = (
+				6D325CB71CAF26EE0035B572 /* StompFrameClientCommand.swift */,
+				6D325CB81CAF26EE0035B572 /* StompFrameServerCommand.swift */,
+			);
+			path = Commands;
+			sourceTree = "<group>";
+		};
+		6D325CAC1CAF26200035B572 /* Errors */ = {
+			isa = PBXGroup;
+			children = (
+				6D325CB51CAF26B00035B572 /* StompServerFrameBuilderError.swift */,
+			);
+			path = Errors;
+			sourceTree = "<group>";
+		};
+		6D325CAD1CAF266D0035B572 /* Client */ = {
+			isa = PBXGroup;
+			children = (
+				6D325CC71CAF270D0035B572 /* ConnectFrame.swift */,
+				6D325CC81CAF270D0035B572 /* SendFrame.swift */,
+				6D325CC91CAF270D0035B572 /* StompClientFrame.swift */,
+				6D325CCA1CAF270D0035B572 /* SubscribeFrame.swift */,
+			);
+			path = Client;
+			sourceTree = "<group>";
+		};
+		6D325CAE1CAF26740035B572 /* Server */ = {
+			isa = PBXGroup;
+			children = (
+				6D325CBD1CAF27040035B572 /* ConnectedFrame.swift */,
+				6D325CBE1CAF27040035B572 /* ErrorFrame.swift */,
+				6D325CBF1CAF27040035B572 /* MessageFrame.swift */,
+				6D325CC01CAF27040035B572 /* ReceiptFrame.swift */,
+				6D325CC11CAF27040035B572 /* StompServerFrame.swift */,
+			);
+			path = Server;
+			sourceTree = "<group>";
+		};
+		6D325CCF1CAF27CB0035B572 /* Extensions */ = {
+			isa = PBXGroup;
+			children = (
+				6D325CD01CAF28190035B572 /* StringExtension.swift */,
+			);
+			path = Extensions;
+			sourceTree = "<group>";
+		};
+		6D325CD21CAF283D0035B572 /* InettyRT */ = {
+			isa = PBXGroup;
+			children = (
+				6D325CD31CAF28640035B572 /* StompClientTests.swift */,
+			);
+			path = InettyRT;
+			sourceTree = "<group>";
+		};
 		6D9D47331C692048000A8BAF = {
 			isa = PBXGroup;
 			children = (
 				6D9D47621C6921C3000A8BAF /* Gloss.framework */,
 				6D9D474E1C69205F000A8BAF /* InettyCore */,
 				6D9D475B1C69219C000A8BAF /* InettyRest */,
+				6D325C9E1CAF25260035B572 /* InettyRT */,
 				6D9D47951C692F00000A8BAF /* UnitTests */,
 				6D9D473E1C692048000A8BAF /* Products */,
 			);
@@ -118,6 +261,7 @@
 				6D9D474D1C69205F000A8BAF /* InettyCore.framework */,
 				6D9D475A1C69219C000A8BAF /* InettyRest.framework */,
 				6D9D47941C692F00000A8BAF /* UnitTests.xctest */,
+				6D325C9D1CAF25260035B572 /* InettyRT.framework */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -125,6 +269,7 @@
 		6D9D474E1C69205F000A8BAF /* InettyCore */ = {
 			isa = PBXGroup;
 			children = (
+				6D325CCF1CAF27CB0035B572 /* Extensions */,
 				6D9D47831C6926F3000A8BAF /* Domains */,
 				6D9D477E1C69266C000A8BAF /* Serializers */,
 				6D9D474F1C69205F000A8BAF /* InettyCore.h */,
@@ -177,6 +322,7 @@
 		6D9D47951C692F00000A8BAF /* UnitTests */ = {
 			isa = PBXGroup;
 			children = (
+				6D325CD21CAF283D0035B572 /* InettyRT */,
 				6DF9BF071C6A9185000F68E3 /* InettyRest */,
 				6DF9BF041C6A9068000F68E3 /* InettyCore */,
 				6D9D47981C692F00000A8BAF /* Info.plist */,
@@ -233,6 +379,14 @@
 /* End PBXGroup section */
 
 /* Begin PBXHeadersBuildPhase section */
+		6D325C9A1CAF25260035B572 /* Headers */ = {
+			isa = PBXHeadersBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				6D325CA01CAF25260035B572 /* InettyRT.h in Headers */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		6D9D474A1C69205F000A8BAF /* Headers */ = {
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
@@ -251,6 +405,25 @@
 /* End PBXHeadersBuildPhase section */
 
 /* Begin PBXNativeTarget section */
+		6D325C9C1CAF25260035B572 /* InettyRT */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 6D325CA41CAF25260035B572 /* Build configuration list for PBXNativeTarget "InettyRT" */;
+			buildPhases = (
+				6D325C981CAF25260035B572 /* Sources */,
+				6D325C991CAF25260035B572 /* Frameworks */,
+				6D325C9A1CAF25260035B572 /* Headers */,
+				6D325C9B1CAF25260035B572 /* Resources */,
+				6D325CD51CAF28B30035B572 /* ShellScript */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = InettyRT;
+			productName = InettyRT;
+			productReference = 6D325C9D1CAF25260035B572 /* InettyRT.framework */;
+			productType = "com.apple.product-type.framework";
+		};
 		6D9D474C1C69205F000A8BAF /* InettyCore */ = {
 			isa = PBXNativeTarget;
 			buildConfigurationList = 6D9D47521C69205F000A8BAF /* Build configuration list for PBXNativeTarget "InettyCore" */;
@@ -314,10 +487,13 @@
 		6D9D47341C692048000A8BAF /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
-				LastSwiftUpdateCheck = 0720;
+				LastSwiftUpdateCheck = 0730;
 				LastUpgradeCheck = 0720;
 				ORGANIZATIONNAME = "major bit innovation";
 				TargetAttributes = {
+					6D325C9C1CAF25260035B572 = {
+						CreatedOnToolsVersion = 7.3;
+					};
 					6D9D474C1C69205F000A8BAF = {
 						CreatedOnToolsVersion = 7.2.1;
 					};
@@ -343,12 +519,20 @@
 			targets = (
 				6D9D474C1C69205F000A8BAF /* InettyCore */,
 				6D9D47591C69219C000A8BAF /* InettyRest */,
+				6D325C9C1CAF25260035B572 /* InettyRT */,
 				6D9D47931C692F00000A8BAF /* UnitTests */,
 			);
 		};
 /* End PBXProject section */
 
 /* Begin PBXResourcesBuildPhase section */
+		6D325C9B1CAF25260035B572 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		6D9D474B1C69205F000A8BAF /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -373,6 +557,20 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
+		6D325CD51CAF28B30035B572 /* ShellScript */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"$(SRCROOT)/Carthage/Build/iOS/Gloss.framework",
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "/usr/local/bin/carthage copy-frameworks";
+		};
 		6D9D47641C6921D3000A8BAF /* ShellScript */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
@@ -418,10 +616,36 @@
 /* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
+		6D325C981CAF25260035B572 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				6D325CA71CAF25A80035B572 /* SSLSecurity.swift in Sources */,
+				6D325CB31CAF26A80035B572 /* StompClientDelegate.swift in Sources */,
+				6D325CCB1CAF270D0035B572 /* ConnectFrame.swift in Sources */,
+				6D325CC61CAF27040035B572 /* StompServerFrame.swift in Sources */,
+				6D325CB21CAF26A80035B572 /* StompClient.swift in Sources */,
+				6D325CCD1CAF270D0035B572 /* StompClientFrame.swift in Sources */,
+				6D325CC31CAF27040035B572 /* ErrorFrame.swift in Sources */,
+				6D325CB41CAF26A80035B572 /* StompServerFrameBuilder.swift in Sources */,
+				6D325CC41CAF27040035B572 /* MessageFrame.swift in Sources */,
+				6D325CBA1CAF26EE0035B572 /* StompFrameServerCommand.swift in Sources */,
+				6D325CA81CAF25A80035B572 /* WebSocket.swift in Sources */,
+				6D325CC51CAF27040035B572 /* ReceiptFrame.swift in Sources */,
+				6D325CB91CAF26EE0035B572 /* StompFrameClientCommand.swift in Sources */,
+				6D325CBC1CAF26FC0035B572 /* StompFrame.swift in Sources */,
+				6D325CCE1CAF270D0035B572 /* SubscribeFrame.swift in Sources */,
+				6D325CB61CAF26B00035B572 /* StompServerFrameBuilderError.swift in Sources */,
+				6D325CC21CAF27040035B572 /* ConnectedFrame.swift in Sources */,
+				6D325CCC1CAF270D0035B572 /* SendFrame.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		6D9D47481C69205F000A8BAF /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				6D325CD11CAF28190035B572 /* StringExtension.swift in Sources */,
 				6D42DA7D1C6F829B00659DB7 /* Serializable.swift in Sources */,
 				6D9D47821C6926EB000A8BAF /* RawSerializer.swift in Sources */,
 				6D9D47871C6927AF000A8BAF /* JsonSerializer.swift in Sources */,
@@ -452,6 +676,7 @@
 				6D537CB81C6E699200B59201 /* Tag.swift in Sources */,
 				6DF9BF121C6A956E000F68E3 /* Test.swift in Sources */,
 				6D9D47A91C693879000A8BAF /* JsonSerializerTests.swift in Sources */,
+				6D325CD41CAF28640035B572 /* StompClientTests.swift in Sources */,
 				6DF9BF101C6A942B000F68E3 /* Category.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -467,6 +692,45 @@
 /* End PBXTargetDependency section */
 
 /* Begin XCBuildConfiguration section */
+		6D325CA21CAF25260035B572 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ENABLE_MODULES = YES;
+				DEFINES_MODULE = YES;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				INFOPLIST_FILE = InettyRT/Info.plist;
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = com.mbi.ios.test.inetty.InettyRT;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+			};
+			name = Debug;
+		};
+		6D325CA31CAF25260035B572 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ENABLE_MODULES = YES;
+				DEFINES_MODULE = YES;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				INFOPLIST_FILE = InettyRT/Info.plist;
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = com.mbi.ios.test.inetty.InettyRT;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
+			};
+			name = Release;
+		};
 		6D9D47431C692048000A8BAF /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
@@ -677,6 +941,14 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
+		6D325CA41CAF25260035B572 /* Build configuration list for PBXNativeTarget "InettyRT" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				6D325CA21CAF25260035B572 /* Debug */,
+				6D325CA31CAF25260035B572 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+		};
 		6D9D47371C692048000A8BAF /* Build configuration list for PBXProject "Inetty" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
