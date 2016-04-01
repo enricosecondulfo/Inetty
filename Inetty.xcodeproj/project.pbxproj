@@ -42,6 +42,7 @@
 		6D9D47A31C69370A000A8BAF /* Gloss.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6D9D47621C6921C3000A8BAF /* Gloss.framework */; };
 		6D9D47A91C693879000A8BAF /* JsonSerializerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6D9D47A81C693879000A8BAF /* JsonSerializerTests.swift */; };
 		6D9D47AA1C693DBA000A8BAF /* InettyCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6D9D474D1C69205F000A8BAF /* InettyCore.framework */; };
+		6DA301B01CAF3051006A36F0 /* InettyCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6D9D474D1C69205F000A8BAF /* InettyCore.framework */; };
 		6DF9BEFD1C6A79C7000F68E3 /* InettyCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6D9D474D1C69205F000A8BAF /* InettyCore.framework */; };
 		6DF9BEFF1C6A7C2A000F68E3 /* Test.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6DF9BEFE1C6A7C2A000F68E3 /* Test.swift */; };
 		6DF9BF011C6A8B6E000F68E3 /* HttpContentType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6DF9BF001C6A8B6E000F68E3 /* HttpContentType.swift */; };
@@ -120,6 +121,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				6DA301B01CAF3051006A36F0 /* InettyCore.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -496,6 +498,7 @@
 					};
 					6D9D474C1C69205F000A8BAF = {
 						CreatedOnToolsVersion = 7.2.1;
+						DevelopmentTeam = 658Z86GMMJ;
 					};
 					6D9D47591C69219C000A8BAF = {
 						CreatedOnToolsVersion = 7.2.1;
@@ -824,6 +827,8 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				CLANG_ENABLE_MODULES = YES;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				DEFINES_MODULE = YES;
 				DYLIB_COMPATIBILITY_VERSION = 1;
 				DYLIB_CURRENT_VERSION = 1;
@@ -838,6 +843,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.mbi.ios.libraries.inetty.InettyCore;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "";
 				SKIP_INSTALL = YES;
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 			};
@@ -847,6 +853,8 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				CLANG_ENABLE_MODULES = YES;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				DEFINES_MODULE = YES;
 				DYLIB_COMPATIBILITY_VERSION = 1;
 				DYLIB_CURRENT_VERSION = 1;
@@ -861,6 +869,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.mbi.ios.libraries.inetty.InettyCore;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "";
 				SKIP_INSTALL = YES;
 			};
 			name = Release;
@@ -948,6 +957,7 @@
 				6D325CA31CAF25260035B572 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		6D9D47371C692048000A8BAF /* Build configuration list for PBXProject "Inetty" */ = {
 			isa = XCConfigurationList;
