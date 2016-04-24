@@ -29,6 +29,12 @@ public class StompClient {
         self.webSocket?.connect()
     }
     
+    public func send(destination: String, body: String) {
+        let sendFrame: SendFrame = SendFrame(destination: destination, body: body)
+        
+        transmit(sendFrame)
+    }
+    
     public func subscribe(destination: String, callback: ((String?) -> ())!) {
         let subscriptionId:String = generateSubscriptionId()
         
@@ -38,7 +44,7 @@ public class StompClient {
         transmit(subscribeFrame)
     }
     
-    func transmit(frame: StompClientFrame) {
+    private func transmit(frame: StompClientFrame) {
         print(frame.description)
         self.webSocket?.writeString(frame.description)
     }

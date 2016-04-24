@@ -44,5 +44,7 @@ extension StompClientTests: StompClientDelegate {
         self.stompClient?.subscribe("/app/sensors", callback: { (body: String?) in
             print(body)
         })
+        
+        self.stompClient?.send("/app/send/notify", body: "{\"blackBoxId\":\"57092ef345cedc1bb5de45b8\",\"operatorId\":\"p.dicapua\",\"state\":\"SEEN\"}")
     }
 }
