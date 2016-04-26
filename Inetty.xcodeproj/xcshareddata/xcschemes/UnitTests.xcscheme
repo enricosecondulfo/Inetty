@@ -34,6 +34,20 @@
                ReferencedContainer = "container:Inetty.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
+         <BuildActionEntry
+            buildForTesting = "YES"
+            buildForRunning = "YES"
+            buildForProfiling = "YES"
+            buildForArchiving = "YES"
+            buildForAnalyzing = "YES">
+            <BuildableReference
+               BuildableIdentifier = "primary"
+               BlueprintIdentifier = "6D325C9C1CAF25260035B572"
+               BuildableName = "InettyRT.framework"
+               BlueprintName = "InettyRT"
+               ReferencedContainer = "container:Inetty.xcodeproj">
+            </BuildableReference>
+         </BuildActionEntry>
       </BuildActionEntries>
    </BuildAction>
    <TestAction

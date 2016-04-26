@@ -498,7 +498,6 @@
 					};
 					6D9D474C1C69205F000A8BAF = {
 						CreatedOnToolsVersion = 7.2.1;
-						DevelopmentTeam = 658Z86GMMJ;
 					};
 					6D9D47591C69219C000A8BAF = {
 						CreatedOnToolsVersion = 7.2.1;
@@ -708,7 +707,7 @@
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = com.mbi.ios.test.inetty.InettyRT;
+				PRODUCT_BUNDLE_IDENTIFIER = com.mbi.ios.libraries.inetty.InettyRest;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
@@ -728,7 +727,7 @@
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = com.mbi.ios.test.inetty.InettyRT;
+				PRODUCT_BUNDLE_IDENTIFIER = com.mbi.ios.libraries.inetty.InettyRest;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
 			};
