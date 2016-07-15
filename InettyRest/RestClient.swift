@@ -23,17 +23,17 @@ public class RestClient {
     var context: NSManagedObjectContext?
     var baseUrl:String
     
-    public init(baseUrl: String) {
-        self.baseUrl = baseUrl
-        self.context = nil
-        self.responseRepository = ResponseRepository(context: nil)
-        
-        do {
-            self.reachability = try Reachability.reachabilityForInternetConnection()
-        } catch {
-            self.reachability = nil
-        }
-    }
+//    public init(baseUrl: String) {
+//        self.baseUrl = baseUrl
+//        self.context = nil
+//        self.responseRepository = ResponseRepository(context: nil)
+//        
+//        do {
+//            self.reachability = try Reachability.reachabilityForInternetConnection()
+//        } catch {
+//            self.reachability = nil
+//        }
+//    }
     
     public init(context:NSManagedObjectContext?, baseUrl: String) {
         self.context = context
