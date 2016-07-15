@@ -7,18 +7,45 @@
 //
 
 import UIKit
+import CoreData
 import InettyCore
+import Reachability
 
 public class RestClient {
     
     let DEFAULT_CONTENT_TYPE = "application/json;charset=UTF-8"
     let DEFAULT_ACCEPT = "application/json"
     
-    var baseUrl:String
     let jsonSerializer: JsonSerializer = JsonSerializer()
-
+    let responseRepository: ResponseRepository?
+    let reachability: Reachability?
+    
+    var context: NSManagedObjectContext?
+    var baseUrl:String
+    
     public init(baseUrl: String) {
         self.baseUrl = baseUrl
+        self.context = nil
+        self.responseRepository = ResponseRepository(context: nil)
+        
+        do {
+            self.reachability = try Reachability.reachabilityForInternetConnection()
+        } catch {
+            self.reachability = nil
+        }
+    }
+    
+    public init(context:NSManagedObjectContext?, baseUrl: String) {
+        self.context = context
+        self.baseUrl = baseUrl
+        
+        self.responseRepository = ResponseRepository(context: self.context!)
+        
+        do {
+            self.reachability = try Reachability.reachabilityForInternetConnection()
+        } catch {
+            self.reachability = nil
+        }
     }
     
     /**
@@ -35,7 +62,7 @@ public class RestClient {
         
         doGet(url, successStatusCodes: successStatusCodes, successCallback: successCallback, errorCallback: errorCallback)
     }
-
+    
     /**
      Execute get request
      
@@ -83,8 +110,8 @@ public class RestClient {
         doPost(url, successStatusCodes: successStatusCodes, entityToAdd: entityToAdd, successCallback: { (entities: [D]?, response:NSHTTPURLResponse?) -> () in
             successCallback!(response: response)
             
-            }) { (response:NSURLResponse?) -> () in
-                errorCallback!(response: response)
+        }) { (response:NSURLResponse?) -> () in
+            errorCallback!(response: response)
         }
     }
     
@@ -134,8 +161,8 @@ public class RestClient {
         doUpdate(url, successStatusCodes: successStatusCodes, entityToAdd: entityToAdd, successCallback: { (entities: [D]?, response:NSHTTPURLResponse?) -> () in
             successCallback?(response: response)
             
-            }) { (response:NSURLResponse?) -> () in
-                errorCallback?(response: response)
+        }) { (response:NSURLResponse?) -> () in
+            errorCallback?(response: response)
         }
     }
     
@@ -185,40 +212,75 @@ public class RestClient {
             
             successCallback?(response: response)
             
-            }) { (response:NSURLResponse?) -> () in
-                errorCallback?(response: response)
+        }) { (response:NSURLResponse?) -> () in
+            errorCallback?(response: response)
         }
     }
-
+    
     private func execute<D where D: RawDomain>(request: NSMutableURLRequest, successStatusCodes:[HttpResponseStatusCode], successCallback: ((entities: [D]?, response:NSHTTPURLResponse?) -> ())? = nil, errorCallback: ((response:NSURLResponse?) -> ())? = nil) {
-                
+        
         let urlSession:NSURLSession = NSURLSession.sharedSession()
+        
+        if let reachability = self.reachability where reachability.currentReachabilityStatus == Reachability.NetworkStatus.NotReachable {
+            print("reachable")
+            
+            if let r = self.responseRepository?.find((request.URL?.absoluteString)!) {
+                
+                do {
+                    let resp: NSHTTPURLResponse? = NSKeyedUnarchiver.unarchiveObjectWithData(r.response!) as? NSHTTPURLResponse
+                    
+                    let entities: [D]? = try self.jsonSerializer.deserialize((r.data)!)
+                    
+                    successCallback?(entities: entities, response: resp)
+                    
+                } catch {
+                    errorCallback?(response: nil)
+                    return
+            }
+            } else {
+             errorCallback?(response: nil)   
+            }
+            
+        } else {
+            
+            let task:NSURLSessionTask = urlSession.dataTaskWithRequest(request) { (data:NSData?, response:NSURLResponse?, error:NSError?) -> Void in
+                
+                guard let httpResponse: NSHTTPURLResponse = response as? NSHTTPURLResponse where successStatusCodes.contains(HttpResponseStatusCode(rawValue: httpResponse.statusCode)!) else {
+                    
+                    errorCallback?(response: response)
+                    return
+                }
+                
+                let callResponse: Response? = self.responseRepository?.create()
+                callResponse?.id = request.URL?.absoluteString
+                callResponse?.response =  NSKeyedArchiver.archivedDataWithRootObject(response!)
 
-        let task:NSURLSessionTask = urlSession.dataTaskWithRequest(request) { (data:NSData?, response:NSURLResponse?, error:NSError?) -> Void in
-            
-            guard let httpResponse: NSHTTPURLResponse = response as? NSHTTPURLResponse where successStatusCodes.contains(HttpResponseStatusCode(rawValue: httpResponse.statusCode)!) else {
+                callResponse?.data = data
+                callResponse?.date = NSDate()
                 
-                errorCallback?(response: response)
-                return
+                self.responseRepository?.add(callResponse!)
+                
+                
+                guard let data: NSData = data where data.length > 0 else {
+                    successCallback?(entities: nil, response: httpResponse)
+                    return
+                }
+                
+                do {
+                    let entities: [D]? = try self.jsonSerializer.deserialize(data)
+                    
+                    successCallback?(entities: entities, response: httpResponse)
+                    
+                } catch {
+                    errorCallback?(response: response)
+                    return
+                }
             }
             
-            guard let data: NSData = data where data.length > 0 else {
-                successCallback?(entities: nil, response: httpResponse)
-                return
-            }
-            
-            do {
-                let entities: [D]? = try self.jsonSerializer.deserialize(data)
-                
-                successCallback?(entities: entities, response: httpResponse)
-                
-            } catch {
-                errorCallback?(response: response)
-                return
-            }
+            task.resume()
         }
         
-        task.resume()
+        
     }
     
     private func createRequest(httpMethod: HttpMethod, url: String, httpContentType: HttpContentType, httpAccept: HttpAccept, additionalValuesHeader:[String: String]?) -> NSMutableURLRequest {
@@ -254,11 +316,5 @@ public class RestClient {
         
         return request
     }
-
-
-
-
-    
-    
 
 }

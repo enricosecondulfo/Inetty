@@ -9,6 +9,4 @@
 import UIKit
 import Gloss
 
-public protocol Serializable: Glossy {
-
-}
+public protocol Serializable: Glossy {}

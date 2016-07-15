@@ -72,6 +72,5 @@ public extension String {
         
         return output;
     }
-    
 }
 
