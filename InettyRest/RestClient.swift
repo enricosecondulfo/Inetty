@@ -251,15 +251,16 @@ public class RestClient {
                     return
                 }
                 
-                let callResponse: Response? = self.responseRepository?.create()
-                callResponse?.id = request.URL?.absoluteString
-                callResponse?.response =  NSKeyedArchiver.archivedDataWithRootObject(response!)
-
-                callResponse?.data = data
-                callResponse?.date = NSDate()
-                
-                self.responseRepository?.add(callResponse!)
-                
+                if request.HTTPMethod == "GET" {
+                    let callResponse: Response? = self.responseRepository?.create()
+                    callResponse?.id = request.URL?.absoluteString
+                    callResponse?.response =  NSKeyedArchiver.archivedDataWithRootObject(response!)
+                    
+                    callResponse?.data = data
+                    callResponse?.date = NSDate()
+                    
+                    self.responseRepository?.add(callResponse!)
+                }
                 
                 guard let data: NSData = data where data.length > 0 else {
                     successCallback?(entities: nil, response: httpResponse)
