@@ -58,9 +58,14 @@ public class RestClient {
      */
     public func doGet<D where D: RawDomain>(url:String, successCallback: ((entities: [D]?, response:NSHTTPURLResponse?) -> ())?, errorCallback: ((response:NSURLResponse?) -> ())?) {
         
+        doGet(url, additionaValuesHeader: nil, successCallback: successCallback, errorCallback: errorCallback)
+    }
+    
+    public func doGet<D where D: RawDomain>(url:String, additionaValuesHeader: [String: String]?,successCallback: ((entities: [D]?, response:NSHTTPURLResponse?) -> ())?, errorCallback: ((response:NSURLResponse?) -> ())?) {
+        
         let successStatusCodes:[HttpResponseStatusCode] = [HttpResponseStatusCode.OK, HttpResponseStatusCode.NOT_MODIFIED]
         
-        doGet(url, successStatusCodes: successStatusCodes, successCallback: successCallback, errorCallback: errorCallback)
+        doGet(url, successStatusCodes: successStatusCodes, additionaValuesHeader: additionaValuesHeader, successCallback: successCallback, errorCallback: errorCallback)
     }
     
     /**
@@ -72,9 +77,9 @@ public class RestClient {
      - successCallback: The callback called when the status code of the response i
      - errorCallback: The callback called when the status code is different from the codes of success
      */
-    public func doGet<D where D: RawDomain>(url: String, successStatusCodes:[HttpResponseStatusCode], successCallback: ((entities: [D]?, response:NSHTTPURLResponse?) -> ())!, errorCallback: ((response:NSURLResponse?) -> ())!) {
+    public func doGet<D where D: RawDomain>(url: String, successStatusCodes:[HttpResponseStatusCode], additionaValuesHeader: [String: String]?, successCallback: ((entities: [D]?, response:NSHTTPURLResponse?) -> ())!, errorCallback: ((response:NSURLResponse?) -> ())!) {
         
-        let request: NSMutableURLRequest = createRequest(HttpMethod.GET, url: url, httpContentType: HttpContentType.json, httpAccept: HttpAccept.json, additionalValuesHeader: nil)
+        let request: NSMutableURLRequest = createRequest(HttpMethod.GET, url: url, httpContentType: HttpContentType.json, httpAccept: HttpAccept.json, additionalValuesHeader: additionaValuesHeader)
         
         execute(request, successStatusCodes: successStatusCodes, successCallback: successCallback, errorCallback: errorCallback)
     }
@@ -107,7 +112,12 @@ public class RestClient {
      */
     public func doPost<D where D: RawDomain>(url:String, successStatusCodes:[HttpResponseStatusCode], entityToAdd:D?, successCallback: ((response:NSHTTPURLResponse?) -> ())?, errorCallback: ((response:NSURLResponse?) -> ())?) {
         
-        doPost(url, successStatusCodes: successStatusCodes, entityToAdd: entityToAdd, successCallback: { (entities: [D]?, response:NSHTTPURLResponse?) -> () in
+        doPost(url, successStatusCodes: successStatusCodes, additionaValuesHeader: nil, entityToAdd: entityToAdd, successCallback: successCallback, errorCallback: errorCallback)
+    }
+
+    public func doPost<D where D: RawDomain>(url:String, successStatusCodes:[HttpResponseStatusCode], additionaValuesHeader: [String: String]?, entityToAdd:D?, successCallback: ((response:NSHTTPURLResponse?) -> ())?, errorCallback: ((response:NSURLResponse?) -> ())?) {
+        
+        doPost(url, successStatusCodes: successStatusCodes, additionaValuesHeader: additionaValuesHeader, entityToAdd: entityToAdd, successCallback: { (entities: [D]?, response:NSHTTPURLResponse?) -> () in
             successCallback!(response: response)
             
         }) { (response:NSURLResponse?) -> () in
@@ -119,12 +129,12 @@ public class RestClient {
         
         let successStatusCodes:[HttpResponseStatusCode] = [HttpResponseStatusCode.OK, HttpResponseStatusCode.CREATED]
         
-        doPost(url, successStatusCodes: successStatusCodes, entityToAdd: entityToAdd, successCallback: successCallback, errorCallback: errorCallback)
+        doPost(url, successStatusCodes: successStatusCodes, additionaValuesHeader: nil, entityToAdd: entityToAdd, successCallback: successCallback, errorCallback: errorCallback)
     }
     
-    public func doPost<D where D: RawDomain>(url:String, successStatusCodes:[HttpResponseStatusCode], entityToAdd: D?, successCallback: ((entities: [D]?, response:NSHTTPURLResponse?) -> ())?, errorCallback: ((response:NSURLResponse?) -> ())?) {
+    public func doPost<D where D: RawDomain>(url:String, successStatusCodes:[HttpResponseStatusCode], additionaValuesHeader: [String: String]?, entityToAdd: D?, successCallback: ((entities: [D]?, response:NSHTTPURLResponse?) -> ())?, errorCallback: ((response:NSURLResponse?) -> ())?) {
         
-        let request:NSMutableURLRequest = createRequest(HttpMethod.POST, url: url, httpContentType: HttpContentType.json, httpAccept: HttpAccept.json, additionalValuesHeader: nil, entityToAdd: entityToAdd)
+        let request:NSMutableURLRequest = createRequest(HttpMethod.POST, url: url, httpContentType: HttpContentType.json, httpAccept: HttpAccept.json, additionalValuesHeader: additionaValuesHeader, entityToAdd: entityToAdd)
         
         execute(request, successStatusCodes: successStatusCodes, successCallback: successCallback, errorCallback: errorCallback)
     }
@@ -156,24 +166,30 @@ public class RestClient {
      - successCallback: The callback called when the status code of the response i
      - errorCallback: The callback called when the status code is different from the codes of success
      */
-    public func doUpdate<D where D: RawDomain>(url:String, successStatusCodes:[HttpResponseStatusCode], entityToAdd:D?, successCallback: ((response:NSHTTPURLResponse?) -> ())?, errorCallback: ((response:NSURLResponse?) -> ())?) {
+    public func doUpdate<D where D: RawDomain>(url:String, successStatusCodes: [HttpResponseStatusCode], entityToAdd:D?, successCallback: ((response:NSHTTPURLResponse?) -> ())?, errorCallback: ((response:NSURLResponse?) -> ())?) {
         
-        doUpdate(url, successStatusCodes: successStatusCodes, entityToAdd: entityToAdd, successCallback: { (entities: [D]?, response:NSHTTPURLResponse?) -> () in
+        doUpdate(url, successStatusCodes: successStatusCodes, additionalValuesHeader: nil, entityToAdd: entityToAdd, successCallback: successCallback, errorCallback: errorCallback)
+    }
+    
+    public func doUpdate<D where D: RawDomain>(url:String, successStatusCodes:[HttpResponseStatusCode], additionalValuesHeader: [String: String]?, entityToAdd:D?, successCallback: ((response:NSHTTPURLResponse?) -> ())?, errorCallback: ((response:NSURLResponse?) -> ())?) {
+        
+        doUpdate(url, successStatusCodes: successStatusCodes, additionalValuesHeader: additionalValuesHeader, entityToAdd: entityToAdd, successCallback: { (entities: [D]?, response:NSHTTPURLResponse?) -> () in
             successCallback?(response: response)
             
         }) { (response:NSURLResponse?) -> () in
             errorCallback?(response: response)
         }
     }
-    
+
+
     public func doUpdate<D where D: RawDomain>(url:String, entityToAdd:D?, successCallback: ((entities: [D]?, response:NSHTTPURLResponse?) -> ())!, errorCallback: ((response:NSURLResponse?) -> ())?) {
         
         let successStatusCodes:[HttpResponseStatusCode] = [HttpResponseStatusCode.OK, HttpResponseStatusCode.CREATED]
         
-        doUpdate(url, successStatusCodes: successStatusCodes, entityToAdd: entityToAdd, successCallback: successCallback, errorCallback: errorCallback)
+        doUpdate(url, successStatusCodes: successStatusCodes, additionalValuesHeader: nil,entityToAdd: entityToAdd, successCallback: successCallback, errorCallback: errorCallback)
     }
     
-    public func doUpdate<D where D: RawDomain>(url:String, successStatusCodes:[HttpResponseStatusCode], entityToAdd: D?, successCallback: ((entities: [D]?, response:NSHTTPURLResponse?) -> ())?, errorCallback: ((response:NSURLResponse?) -> ())?) {
+    public func doUpdate<D where D: RawDomain>(url:String, successStatusCodes:[HttpResponseStatusCode], additionalValuesHeader: [String: String]?, entityToAdd: D?, successCallback: ((entities: [D]?, response:NSHTTPURLResponse?) -> ())?, errorCallback: ((response:NSURLResponse?) -> ())?) {
         
         let request:NSMutableURLRequest = createRequest(HttpMethod.PUT, url: url, httpContentType: HttpContentType.json, httpAccept: HttpAccept.json, additionalValuesHeader: nil, entityToAdd: entityToAdd)
         
