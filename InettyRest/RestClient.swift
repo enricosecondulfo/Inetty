@@ -191,7 +191,7 @@ public class RestClient {
     
     public func doUpdate<D where D: RawDomain>(url:String, successStatusCodes:[HttpResponseStatusCode], additionalValuesHeader: [String: String]?, entityToAdd: D?, successCallback: ((entities: [D]?, response:NSHTTPURLResponse?) -> ())?, errorCallback: ((response:NSURLResponse?) -> ())?) {
         
-        let request:NSMutableURLRequest = createRequest(HttpMethod.PUT, url: url, httpContentType: HttpContentType.json, httpAccept: HttpAccept.json, additionalValuesHeader: nil, entityToAdd: entityToAdd)
+        let request:NSMutableURLRequest = createRequest(HttpMethod.PUT, url: url, httpContentType: HttpContentType.json, httpAccept: HttpAccept.json, additionalValuesHeader: additionalValuesHeader, entityToAdd: entityToAdd)
         
         execute(request, successStatusCodes: successStatusCodes, successCallback: successCallback, errorCallback: errorCallback)
     }

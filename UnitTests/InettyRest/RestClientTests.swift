@@ -65,7 +65,8 @@ class RestClientTests: XCTestCase {
 
         let context: NSManagedObjectContext? = self.setUpInMemoryManagedObjectContext()
         
-        let store: Store = Store()
+        var store: Store = Store()
+        store.name = "test"
         
         let authorization: String = "cnViZW4xMjpwYXNzd29yZA=="
         
