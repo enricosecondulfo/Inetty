@@ -325,7 +325,23 @@ public class RestClient {
     
     private func createRequest<D where D: RawDomain>(httpMethod:HttpMethod, url: String, httpContentType: HttpContentType, httpAccept: HttpAccept, additionalValuesHeader:[String: String]?, entityToAdd:D?) -> NSMutableURLRequest {
         
-        let request:NSMutableURLRequest = createRequest(httpMethod, url: url, httpContentType: httpContentType, httpAccept: httpAccept, additionalValuesHeader: nil)
+        let request:NSMutableURLRequest = NSMutableURLRequest()
+        request.URL = NSURL(string: "\(self.baseUrl)\(url)")
+        request.HTTPMethod = httpMethod.rawValue
+        
+        if (httpContentType != HttpContentType.none) {
+            request.addValue(httpContentType.rawValue, forHTTPHeaderField: "Content-Type")
+        }
+        
+        if (httpAccept != HttpAccept.none) {
+            request.addValue(httpAccept.rawValue, forHTTPHeaderField: "Accept")
+        }
+        
+        if let additionalValuesHeader:[String: String] = additionalValuesHeader {
+            for (key, value) in additionalValuesHeader {
+                request.addValue(value, forHTTPHeaderField: key)
+            }
+        }
         
         if let entityToAdd:D = entityToAdd {
             request.HTTPBody = try! self.jsonSerializer.serialize(entityToAdd)

@@ -60,6 +60,30 @@ class RestClientTests: XCTestCase {
         })
     }
     
+    func testDoPost2() {
+        let expectation:XCTestExpectation! = self.expectationWithDescription("asynchronous request")
+
+        let context: NSManagedObjectContext? = self.setUpInMemoryManagedObjectContext()
+        
+        let store: Store = Store()
+        
+        let authorization: String = "cnViZW4xMjpwYXNzd29yZA=="
+        
+        var additionalValuesHeader: [String: String] = [:]
+        additionalValuesHeader["Authorization"] = "Basic \(authorization)"
+        
+        self.restClient = RestClient(context: context, baseUrl: "http://93.186.254.58:28080/LambWestonRest/")
+        self.restClient?.doPost("scheda", successStatusCodes: [HttpResponseStatusCode.OK], additionaValuesHeader: additionalValuesHeader, entityToAdd: store, successCallback: { (response: NSHTTPURLResponse?) in
+            
+            print("customer card saved")
+            expectation.fulfill()
+            
+            }, errorCallback: { (response: NSURLResponse?) in
+                print("error")
+                expectation.fulfill()
+        })
+    }
+    
     func testDoPost() {
         let expectation:XCTestExpectation! = self.expectationWithDescription("asynchronous request")
         
